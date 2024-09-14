@@ -8,7 +8,9 @@ using System.IO;
 namespace TravelApi.Models;
 public class TravelApiContextFactory : IDesignTimeDbContextFactory<TravelApiContext>
 {
-    public TravelApiContextFactory CreateDbContext(string[] args)
+    // Error CS0738 'TravelApiContextFactory' does not implement interface member 'IDesignTimeDbContextFactory<TravelApiContext>.CreateDbContext(string[])'. 'TravelApiContextFactory.CreateDbContext(string[])' cannot implement 'IDesignTimeDbContextFactory<TravelApiContext>.CreateDbContext(string[])' because it does not have the matching return type of 'TravelApiContext
+    // Solution: the Method CreateDbContext expects a return type of TravelApiContext since we already configured it to use such object while inheriting from it...To solve the error, the method CreateDbContext returns a TravelApiContext not a TravelApiContextFactory
+    public TravelApiContext CreateDbContext(string[] args)
     {
         // Create a new configuration builder and set path to appsettings.json
         IConfigurationRoot configuration = new ConfigurationBuilder()
@@ -21,7 +23,7 @@ public class TravelApiContextFactory : IDesignTimeDbContextFactory<TravelApiCont
         var connectionString = configuration.GetConnectionString("DefaultConnection");
 
         // Use MySql or SQL server depending on your Setup
-        optionsBuilder.UseMySql(connectionString, SeverVersion.AutoDetect(connectionString));
+        optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
 
         return new TravelApiContext(optionsBuilder.Options);
 
