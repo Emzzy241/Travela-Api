@@ -8,13 +8,13 @@ using System.IO;
 namespace TravelApi.Models;
 public class TravelApiContextFactory : IDesignTimeDbContextFactory<TravelApiContext>
 {
-    public TravelApiContextFactory(string args[])
+    public TravelApiContextFactory CreateDbContext(string[] args)
     {
         // Create a new configuration builder and set path to appsettings.json
         IConfigurationRoot configuration = new ConfigurationBuilder()
-        .SetBasePath(Directory.GetCurrentDirectory())
-        .AddJsonFile("appsettings.json")
-        .Build();
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json")
+            .Build();
 
         // Get the connection string from the configuration
         var optionsBuilder = new DbContextOptionsBuilder<TravelApiContext>();
