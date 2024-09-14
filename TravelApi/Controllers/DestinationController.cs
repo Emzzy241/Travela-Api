@@ -16,10 +16,42 @@ public class DestinationController: ControllerBase
 
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Destination>>> Get()
+        public async Task<ActionResult<IEnumerable<Destination>>> Get(string name, string country, string city, string destName, string review, int minimumRating)
         {
+            IQueryable<Destination> querry = _db.Destinations.AsQueryable();
+
+            if(name != null)
+            {
+                querry = querry.Where(entry => entry.UserName == name);
+            }
+
+            if(country != null)
+            {
+                querry = querry.Where(entry => entry.Country == country);
+            }
+
+            if(city != null)
+            {
+                querry = querry.Where(entry => entry.City == city);
+            }
+
+            if(destName != null)
+            {
+                querry = querry.Where(entry => entry.DestinationName == destName);
+            }
+
+            if (review != null)
+            {
+                querry = querry.Where(entry => entry.Review == review);
+            }
+
+            if (minimumRating > 0)
+            {
+                // using the lambda expression inside the Where() method for the minimumRating value
+                querry = querry.Where(entry => entry.OverallRating >= minimumRating);
+            }
             // Converting all destinations that we get from our database into a C# list
-            return await _db.Destinations.ToListAsync();
+            return await querry.ToListAsync();
         }
 
         [HttpGet("{id}")]
@@ -51,5 +83,7 @@ public class DestinationController: ControllerBase
             // But for our API projects w will be using a CreatedAtAction() method that takes in 3 parameters; Name of the Action to return to, the id, and the object we are actually creating
             return CreatedAtAction(nameof(GetDestination), new { id = dest.DestinationId}, dest);
         }
+
+        // 
        
 }

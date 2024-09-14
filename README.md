@@ -28,22 +28,27 @@ _An Api that allows users to GET and POST reviews about various travel destinati
 
 ### Example Querries
 
-1. The following query will return all destinations with a species value of Dinosaur i.e search for all destinations that are dinosaurs:
+1. The following query will return all destinations with a name value of dynasty i.e search for all destinations that was created with the username dynasty:
 ```sh
-GET http:localhost:5000/api/destinations?species=dinosaur
+GET http:localhost:5000/api/destinations?name=dynasty
 ```
 
-2. The following query will return all destinations with the name Matilda:
+2. The following query will return all destinations with the country name Nigeria:
 ```sh
-GET http:localhost:5000/api/destinations?name=matilda
+GET http:localhost:5000/api/destinations?country=nigeria
 ```
 
-3. The following query will return all destinations with an age of 10 or older:
+3. The following query will return all destinations with the city name Alberta:
 ```sh
-    GET http:localhost:5000/api/destinations?minimumAge=10
+    GET http:localhost:5000/api/destinations?city=alberta
 ```
 
-4. Its possible to combine multiple querries with &. The following query will return all destinations with specie dinosaur, with an age of 10 or older:
+4. The following query will return all destinations with a minimum rating of 3 i.e return all destinations that was rated 3 stars and above:
+```sh
+    GET http:localhost:5000/api/destinations?minimumRating=3
+```
+
+5. Its possible to combine multiple querries with &. The following query will return all destinations with specie dinosaur, with an age of 10 or older:
 
 ```sh
     GET http:localhost/5000/api/destinations?species=dinosaur&minimumAge=10
