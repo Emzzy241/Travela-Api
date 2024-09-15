@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TravelApi.Models;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace TravelApi.Models;
 [Route("api/[controller]")]
@@ -103,14 +106,29 @@ public class DestinationController: ControllerBase
         
         } 
 
+        // [HttpDelete("{id}")]
+        // public async Task<ActionResult<Destination>> DeleteDestination(int id)
+        // {
+        //     var dest = _db.Destinations.FindAsync(id);
+        //    if(dest == null)
+        //    {
+        //         return NotFound();
+        //    }
+        //     _db.Destinations.Remove(dest);
+        //     await _db.SaveChangesAsync();
+
+        //     return NoContent();
+        // }
+
         [HttpDelete("{id}")]
         public async Task<ActionResult<Destination>> DeleteDestination(int id)
         {
-            var dest = _db.Destinations.FindAsync(id);
-           if(dest == null)
-           {
+            var dest = await _db.Destinations.FindAsync(id);
+            if(dest == null)
+            {
                 return NotFound();
-           }
+            }
+
             _db.Destinations.Remove(dest);
             await _db.SaveChangesAsync();
 
