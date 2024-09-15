@@ -103,6 +103,20 @@ public class DestinationController: ControllerBase
         
         } 
 
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<Destination>> DeleteDestination(int id)
+        {
+            var dest = _db.Destinations.FindAsync(id);
+           if(dest == null)
+           {
+                return NotFound();
+           }
+            _db.Destinations.Remove(dest);
+            await _db.SaveChangesAsync();
+
+            return NoContent();
+        }
+
         private bool DestinationExists(int id)
         {
             return _db.Destinations.Any(dest => dest.DestinationId == id);

@@ -58,27 +58,34 @@ GET http:localhost:5000/api/destinations?country=nigeria
 * _When making a POST request to http://localhost:5000/api/destinations/ you need to include a body. Please do not add in the id when making a POST i.e when creating an animal, the database will help out with that.Here is an example body in JSON:_
 ``` json
     {
-        "species": "Tyrannosaurus Rex",
-        "name": "Elizabeth",
+        "username": "Dynasty",
+        "country": "United States",
+        "city": "New Mexico",
+        "destinationname": "Alberta",
+        "review": "A great and fun place in Canada",
+        "overallrating": 3,
         "age": 8
     }
 ```
 
 ### Additional Requirement when making a PUT request
-* _When making a PUT request to http://localhost:5000/api/destinations/{id} you need to include a body that includes the animalId property. A PUT request is to edit, pleas eadd in the id of the animal that you want to edit.Here's an example body in JSON:_
+* _When making a PUT request to http://localhost:5000/api/destinations/{id} you need to include a body that includes the destinationId property. A PUT request is to edit, pleas eadd in the id of the animal that you want to edit.Here's an example body in JSON:_
 ``` json
     {
-        "animalId": 1,
-        "species": "Tyrannosaurus Rex",
-        "name": "Elizabeth",
-        "age": 8
+        "destinationId": 1,
+        "species": "Dynasty",
+        "country": "United States",
+        "city": "New Mexico",
+        "destinationname": "Alberta",
+        "review": "A great and fun place in Canada",
+        "overallrating": 3
     }
 ```
 And here is the PUT request we would send the previous body to:
 ```sh
     http://localhost:5000/api/destinations/1
 ```
-Notice that the value of animalId needs to match the id number in the URL in this example, they are both 1
+Notice that the value of destinationId needs to match the id number in the URL in this example, they are both 1
 
 
 ### Documentation on Further Exploration
