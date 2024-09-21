@@ -8,11 +8,11 @@ using System.Linq;
 namespace TravelApi.Models;
 [Route("api/[controller]")]
 [ApiController]
-public class DestinationController: ControllerBase
+public class DestinationsController: ControllerBase
 {
     private readonly TravelApiContext _db;
 
-    public DestinationController(TravelApiContext db)
+    public DestinationsController(TravelApiContext db)
     {
         _db = db;
     }
