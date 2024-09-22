@@ -54,7 +54,7 @@ if (app.Environment.IsDevelopment())
 // // Enable CORS
 // app.UseCors("AllowTravelClient");
 
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
