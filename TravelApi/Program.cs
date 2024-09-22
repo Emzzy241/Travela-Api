@@ -18,16 +18,16 @@ builder.Services.AddControllers();
 //         });
 // });
 
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowAllOrigins",
-        builder =>
-        {
-            builder.AllowAnyOrigin()
-                   .AllowAnyMethod()
-                   .AllowAnyHeader();
-        });
-});
+// builder.Services.AddCors(options =>
+// {
+//     options.AddPolicy("AllowAllOrigins",
+//         builder =>
+//         {
+//             builder.AllowAnyOrigin()
+//                    .AllowAnyMethod()
+//                    .AllowAnyHeader();
+//         });
+// });
 
 // Adding the middleware for our DbContext
 builder.Services.AddDbContext<TravelApiContext>(
@@ -51,8 +51,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// Enable CORS
-app.UseCors("AllowTravelClient");
+// // Enable CORS
+// app.UseCors("AllowTravelClient");
 
 app.UseHttpsRedirection();
 
